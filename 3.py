@@ -12,9 +12,11 @@ def gsp(dictionary, val, curr, destEle, prev, arr):
 
 if __name__ == "__main__":
     totalMembers, nodes = int(input().strip()), {}
+    mr = []
     for _ in range(totalMembers):
         mem = int(input().strip())
         nodes[mem] = [False, []]
+        mr.append(mem)
     e = int(input().strip())
 
     for _ in range(e):
@@ -24,6 +26,8 @@ if __name__ == "__main__":
     source = int(input().strip())
     destination = int(input().strip())
     arr = []
-    for k in nodes[source][1]:
-        gsp(nodes, k, nodes[k], destination, source, arr)
-    print(*arr)
+    gsp(nodes, source, nodes[source], destination, source, arr)
+    for ele in mr:
+        if ele in arr:
+            print(ele, end=" ")
+    print()
